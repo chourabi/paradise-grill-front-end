@@ -1,20 +1,153 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <!--*ngIf="ordersList.length != 0"-->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" routerLink="/orders" >
+    <ion-button shape="round" color="warning">
+      <ion-icon name="cart"></ion-icon>
+      <a class="text-dark font-weight-bold ml-auto"  >Commander({{orders.getProductOrders().length}})</a>
+      
+    </ion-button>
+  </ion-fab>
+  
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="osahan-home-page scroll">
+    <div class="bg-primary p-3">
+      <div class="text-white">
+        <div class="title d-flex align-items-center">
+          <a class="toggle" (click)="openSideMenu()">
+            <ion-icon name="fast-food-outline" class="menu-icon"></ion-icon>
+          </a>
+          <h4 class="font-weight-bold m-0 pl-5">Paradise Grill</h4>
+          
+        </div>
+      </div>
+      <div class="input-group mt-3 rounded shadow-sm overflow-hidden">
+        <div class="input-group-prepend">
+          <button class="border-0 btn btn-outline-secondary text-dark bg-white btn-block"><i
+              class="feather-search"></i></button>
+        </div>
+        <input type="text" class="shadow-none border-0 form-control" placeholder="Vous cherchez quelque chose ?"
+          aria-label="" aria-describedby="basic-addon1">
+      </div>
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-progress-bar type="indeterminate" color="danger" *ngIf="isLoading"></ion-progress-bar>
+  
+  
+    <div class="bg-light " style="padding-bottom: 100px;">
+  
+      <div *ngIf="all">
+        <h3>Bienvenue</h3>
+      </div>
+      <div *ngIf="! all">
+        <div class="cat-slider border-bottom row">
+          <div class="cat-item   py-3 col-sm-4 col-md-3 col-lg-2 filter-category"
+            *ngFor="let filter of subfilters;let j=index;" (click)="subFilterClick(j)">
+            <a class="bg-white rounded d-block p-2 text-center shadow" *ngIf="! filter.clicked">
+              <!--<img src=" img/icons/Fries.png" class="img-fluid mb-2">-->
+              <p class="m-0 small">{{filter.filter_label}}</p>
+            </a>
+    
+            <a class="bg-primary text-white rounded d-block p-2 text-center shadow" *ngIf=" filter.clicked">
+              <!--<img src=" img/icons/Fries.png" class="img-fluid mb-2">-->
+              <p class="m-0 small text-white ">{{filter.filter_label}}</p>
+            </a>
+    
+    
+    
+          </div>
+        </div>
+    
+    
+        <div class="p-3 title d-flex align-items-center">
+          <h5 class="m-0 pt-3">{{selectedLabel}}</h5>
+          <a class="pt-3 font-weight-bold ml-auto">{{products.length}} produit(s) </a>
+        </div>
+    
+    
+        <div class="most_sale ">
+          <div class="row">
+            <div class="col-sm-12 col-md-4 pt-2" *ngFor="let p of products">
+              <div
+                class="d-flex align-items-center list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
+                <div class="list-card-image">
+                  <a [routerLink]="'/product-details/'+p.id">
+                    <img src="{{apiEndPoint}}/img/produits/{{p.photo_url}}" class="img-fluid item-img w-100">
+                  </a>
+                </div>
+                <div class="p-3 position-relative">
+                  <div class="list-card-body">
+                    <h6 class="mb-1">
+                      <a [routerLink]="'/product-details/'+p.id" class="text-black">
+                        {{ p.label }}
+                      </a>
+                    </h6>
+                    <p class="text-gray mb-3">{{p.global_category}} • {{p.category_produit}}</p>
+                    <p class="text-gray mb-3 time">
+                      <span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="feather-clock"></i>
+                        {{ transformTime(p.prep_time) }}</span>
+                      <span class="float-right text-black-50" style="display: block;">
+                        {{p.price | currency:'EUR':true}}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+
+
+      
+
+  
+  
+  
+  
+  
+  
+    </div>
+  
+  
+    <!--<div class="osahan-menu-fotter fixed-bottom bg-white px-3 py-2 text-center">
+      <div class="row">
+        <div class="col selected">
+          <a href="home.html" class="text-danger small font-weight-bold text-decoration-none">
+            <p class="h4 m-0"><i class="feather-home text-danger"></i></p>
+            Home
+          </a>
+        </div>
+        <div class="col">
+          <a href="most_popular.html" class="text-dark small font-weight-bold text-decoration-none">
+            <p class="h4 m-0"><i class="feather-map-pin"></i></p>
+            Trending
+          </a>
+        </div>
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+          <div class="bg-danger rounded-circle mt-n0 shadow">
+            <a href="checkout.html" class="text-white small font-weight-bold text-decoration-none">
+              <i class="feather-shopping-cart"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col">
+          <a href="favorites.html" class="text-dark small font-weight-bold text-decoration-none">
+            <p class="h4 m-0"><i class="feather-heart"></i></p>
+            Favorites
+          </a>
+        </div>
+        <div class="col">
+          <a href="profile.html" class="text-dark small font-weight-bold text-decoration-none">
+            <p class="h4 m-0"><i class="feather-user"></i></p>
+            Profile
+          </a>
+        </div>
+      </div>
+    </div>-->
+  
+  
+  
+  
   </div>
 </ion-content>

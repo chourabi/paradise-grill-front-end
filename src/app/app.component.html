@@ -1,3 +1,30 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  
+  <ion-menu side="start" menuId="sidemenu" contentId="main" type="push">
+    
+    <div class="side-menu"></div>
+    <div class="menu-side-list">
+      <div  routerLinkActive="active-menu-item" class="item-menu" button (click)="toggleMenu()"  *ngFor="let filter of filters;let j=index;"  [routerLink]="'/home/'+filter.id">
+        {{filter.categorie}}
+
+       <!-- <div class="filter-category">
+          <a class="bg-white rounded d-block p-2 text-center shadow" *ngIf="! filter.clicked">
+            
+            <p class="m-0 small"></p>
+          </a>
+  
+          <a class="bg-primary text-white rounded d-block p-2 text-center shadow" *ngIf=" filter.clicked">
+            
+            <p class="m-0 small text-white ">{{filter.categorie}}</p>
+          </a>
+  
+  
+  
+        </div>-->
+
+      </div>
+    </div>
+  </ion-menu>
+
+<ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

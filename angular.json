@@ -31,8 +31,18 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "styles": [
+              "src/theme/variables.scss",
+               "src/global.scss"
+              ],
+            "scripts": [
+              "src/assets/vendor/jquery/jquery.min.js",
+              "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/vendor/slick/slick.min.js",
+              "src/assets/vendor/sidebar/hc-offcanvas-nav.js",
+              "src/assets/js/osahan.js"
+
+            ]
           },
           "configurations": {
             "production": {

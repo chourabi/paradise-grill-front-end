@@ -1,0 +1,86 @@
+<div class="osahan-recepie scroll">
+
+  <div class=" border-bottom px-3 pt-3 pb-2">
+    <a class="text-primary font-weight-bold" (click)="back()"><i class="feather-chevron-left"></i> Retour</a>
+    <!--<h2 class="font-weight-bold m-0 text-white pt-3">Chargement...</h2>-->
+  </div>
+  <ion-progress-bar type="indeterminate" color="danger" *ngIf="isLoading"></ion-progress-bar>
+  
+
+
+  <div class="product-details"  *ngIf=" ! isLoading">
+    <div class="my-5">
+      <div class="row">
+        <div class="col-sm-12 col-md-5">
+          <div class="recepie-header">
+
+            <img src="{{apiEndPoint}}/img/produits/{{product.photo_url}}" class="img-fluid w-100"
+              alt="Responsive image">
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-7">
+
+
+          <div class="recepie-body">
+            <div class="p-3">
+              <h2 class="font-weight-bold">{{product.label}}</h2>
+              <h3 class="font-weight-bold mt-4">{{product.price | currency:'EUR':true}}</h3>
+
+              <h5 class="font-weight-bold mt-4">DESCRIPTION</h5>
+              <p class="text-muted">
+                {{product.description}}
+              </p>
+              <h5 *ngIf="options.length != 0" class="font-weight-bold mt-4">SUPPLÉMENTS</h5>
+
+
+              <div>
+                <ul>
+                  <li *ngFor="let o of options; let k = index;">
+                    <h6>{{o.option.nom}}  </h6>
+                    <div class="custom-control custom-radio border-bottom py-2" >
+                      
+
+                          <span (click)="addItem(j,k)" [ngClass]="item.selected == true ? 'active' : ''" class="badge rounded-pill item-sup   bagde-lg" id="customRadio{{item.id}}" *ngFor="let item of o.items;let j=index;">{{item.nom}}</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <h5 class="font-weight-bold mt-4">QUANTITÉ</h5>
+              <span class="count-number">
+                <button (click)="qUpdate(false)" type="button" class="btn-sm left dec btn btn-outline-secondary"> <i class="feather-minus"></i> </button>
+                <input class="count-number-input" type="text" readonly="" [value]="quantity">
+                <button (click)="qUpdate(true)" type="button" class="btn-sm right inc btn btn-outline-secondary"> <i class="feather-plus"></i> </button>
+              </span>
+
+
+
+
+
+              <h5 class="font-weight-bold mt-4">Informaitons supplémentaires</h5>
+              <div style="    margin-bottom: 100px;">
+                <textarea style="width: 100%;" class="form-control" rows="3"
+                  placeholder="informaitons supplémentaires..."  [(ngModel)]="additionalIformation" ></textarea>
+              </div>
+
+              
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="fixed-bottom" *ngIf="product.id !=  null ">
+    <button class="btn btn-primary btn-lg btn-block" (click)="confirmPreOrder()" >Pré-commander - {{ orderPrice() | currency:'EUR':true}} </button>
+  </div>
+
+
+</div>
+
+
