@@ -33,7 +33,8 @@
             ],
             "styles": [
               "src/theme/variables.scss",
-               "src/global.scss"
+              "src/global.scss",
+              "src/assets/fonts/icons/css/fontello.css"
               ],
             "scripts": [
               "src/assets/vendor/jquery/jquery.min.js",

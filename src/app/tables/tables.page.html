@@ -1,0 +1,81 @@
+
+<ion-content>
+
+  <div class="row pb-3 " style="border-bottom: 1px solid #b4b4b4;">
+    <div class="col-sm-12">
+      <div class="col pt-3">
+        <h3>Choisissez la table</h3>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ion-button color="light" (click)="getTables()">Rafraîchir</ion-button>
+        </div>
+        <div class="col">
+          <div class="text-right">
+              <span class="badge badge-dark mr-3 text-white py-2"> fermée</span>
+              <span class="badge badge-success mr-3 text-white py-2"> ouverte</span>
+              <span class="badge badge-warning mr-3 text-white py-2"> en cours</span>
+          </div>
+          
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+
+  </div>
+  <ion-progress-bar type="indeterminate" color="danger" *ngIf="isLoading"></ion-progress-bar>
+
+
+  <div class="row mt-3">
+    <div class="col-sm-12">
+      <div class="table-restaurent" *ngFor="let table of tables" (click)="selectTable(table.uniqueID)">
+
+        <div *ngIf=" table.status == 0 " class="bg-dark">
+          {{ table.number }}
+        </div>
+        <div *ngIf=" table.status == 1 " class="bg-success">
+          {{ table.number }}
+        </div>
+        <div *ngIf=" table.status == 2 " class="bg-warning">
+          {{ table.number }}
+        </div>
+        
+         
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>
+
+<!--
+{% if table.status == 0 %}
+                        <span class="badge bg-dark text-white">
+                            fermée
+                        </span>
+                    {% endif %}
+
+                    {% if table.status == 1 %}
+                        <span class="badge bg-success text-white">
+                            ouverte
+                        </span>
+                    {% endif %}
+
+                    {% if table.status == 2 %}
+                        <span class="badge bg-warning text-white">
+                            en cours
+                        </span>
+                    {% endif %}
+
+                    {% if table.status == 3 %}
+                        <span class="badge bg-danger text-white">
+                            en envoyée
+                        </span>
+                    {% endif %}
+
+-->

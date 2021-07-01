@@ -8,13 +8,16 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PrepTimePipe } from './prep-time.pipe';
+import { TableScanPipe } from './table-scan.pipe';
 
+import { NgxQRCodeModule } from 'ngx-qrcode2'
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @NgModule({
-  declarations: [AppComponent, PrepTimePipe],
+  declarations: [AppComponent, PrepTimePipe, TableScanPipe],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,NgxQRCodeModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },BarcodeScanner ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

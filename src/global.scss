@@ -79,9 +79,18 @@
 
 .menu-side-list > .item-menu{
     padding: 15px 25px;
-    font-size: 23px;
-    border-bottom: 1px solid #9e9e9e;
+    font-size: 19px;
+    border-bottom: 1px solid #5e5e5e;
     cursor: pointer;
+    padding-left: 92px;
+    position: relative;
+}
+
+.menu-side-list > .item-menu > .category-icon{
+    position: absolute;
+    left: 14px;
+    top: -8px;
+    font-size: 50px;
 }
 
 .active-menu-item{
@@ -103,4 +112,8 @@
     background-color: #e13140;
     border: 1px solid #e13140;
     color: white;
+}
+
+.osahan-home-page{
+    width: 101%;
 }

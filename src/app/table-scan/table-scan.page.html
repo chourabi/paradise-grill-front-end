@@ -1,0 +1,16 @@
+<ion-content>
+  <div class="vh-100 location location-page">
+    <div class="d-flex align-items-center justify-content-center vh-100 flex-column">
+      <div class="qr-logo">
+        <ion-icon name="qr-code-outline"></ion-icon>
+      </div>
+      <div class="px-4 text-center mt-4">
+        <h5 class="text-dark">Bonjour!</h5>
+        <p class="mb-5">Scannez un code QR de table pour commencer.</p>
+        <a (click)="scanTable()" class="btn btn-lg btn-primary btn-block my-4 text-white"> Scanner le code QR de la table</a>
+        <a routerLink="/tables" class="text-dark">Sélectionnez-le manuellement</a>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

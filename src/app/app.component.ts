@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
 
   getParentsFilters(){
     this.api.getCategoriesList().subscribe((filters:any)=>{
+
+      console.log(filters);
+      
       
       this.filters = [];
 
@@ -26,6 +29,7 @@ export class AppComponent implements OnInit {
         this.filters.push({
           "id":filter.id,
           "categorie":filter.categorie,
+          "icon_class_name":filter.icon_class_name,
           "clicked":false
         })
       });

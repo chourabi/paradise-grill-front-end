@@ -4,8 +4,11 @@
     
     <div class="side-menu"></div>
     <div class="menu-side-list">
+      <div  routerLinkActive="active-menu-item" class="item-menu" button   [routerLink]="'/home/all'" (click)="toggleMenu()">
+         En premier
+      </div>
       <div  routerLinkActive="active-menu-item" class="item-menu" button (click)="toggleMenu()"  *ngFor="let filter of filters;let j=index;"  [routerLink]="'/home/'+filter.id">
-        {{filter.categorie}}
+        <i class="category-icon  {{filter.icon_class_name}} "></i> {{filter.categorie}}
 
        <!-- <div class="filter-category">
           <a class="bg-white rounded d-block p-2 text-center shadow" *ngIf="! filter.clicked">

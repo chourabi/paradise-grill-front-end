@@ -34,6 +34,8 @@ export class HomePage implements OnInit {
 
   getPromotedProducts(){
     this.api.getPromotedProducts().subscribe((data:any)=>{
+      console.log("promoted",data);
+      
       
       this.promotedProducts = data;
       
@@ -87,6 +89,8 @@ getSubs(id){
     if (id == 'all') {
       this.all = true
       // show welcome message or something !
+      this.getPromotedProducts();
+
     }else{
       this.all = false;
       this.getSubs(id);
@@ -121,6 +125,10 @@ getSubs(id){
   getProductsBySubCategories(id){
     this.isLoading = ! this.isLoading;
     this.api.getProductsBySubCategories(id).subscribe((data:any)=>{
+      console.log(data);
+
+      
+      
       this.products = data;
       this.isLoading = ! this.isLoading;
     },(error)=>{
@@ -145,6 +153,10 @@ getSubs(id){
     })
   }
 
+
+  scanTable(){
+    
+  }
   
 
 }

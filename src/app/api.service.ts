@@ -64,5 +64,43 @@ export class ApiService {
 
     return this.http.get(environment.api+'/api/mobile/table_status/'+tableId,httpOptions);
   }
+
+  openTable(tableId){
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    return this.http.get(environment.api+'/api/mobile/table_open/'+tableId,httpOptions);
+  }
+
+  checkTableExistance(id){
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    return this.http.get(environment.api+'/api/mobile/table_check/'+id,httpOptions);
+  }
+
+  getTablesList(){
+    
+    const  tableId= this.orders.getTableID();
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    return this.http.get(environment.api+'/api/mobile/tables_list',httpOptions);
+  }
+  
+
+
   
 }

@@ -15,17 +15,39 @@ export class OrdersPage implements OnInit {
   ordersList = [];
   apiEndPoint;
   waitingTime="";
+  tableStatus=0;
+  onGoAmmountToPay = 0;
+
+  isLoading = true;
+  errorLoading = false;
+
 
   constructor(public api:ApiService, public loadingController:LoadingController, public alertController:AlertController, public router:Router, public toastController:ToastController, public nav:NavController,public orders:OrdersService) { }
 
   ngOnInit() {
   this.ordersList = this.orders.getProductOrders();
   this.apiEndPoint = environment.api;
+  this.isLoading = true;
 
-  this.api.getTableStatus().subscribe((data)=>{
+  this.api.getTableStatus().subscribe((data:any)=>{
+    this.onGoAmmountToPay = 0;
+
     console.log(data);
-    
+    const products = data.products;
+
+    products.map((p)=>{
+      this.onGoAmmountToPay+= ( p.quantity * p.unitPrice );
+    })
+
+    this.isLoading = false;
+    this.tableStatus = data.status;
+
+
+  },(error)=>{
+    this.isLoading = false;
+    this.errorLoading = false;
   })
+
   }
 
   back(){
